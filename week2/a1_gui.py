@@ -1,5 +1,12 @@
-import tkinter
+#!/usr/bin/python
+
+# this code is provided by the course for testing a1.py
+# this course required use python3, however when I run this
+# code by python3.2, there is a ImportError: No module named _tkinter
+# then I change tkinter into Tkinter instead, and run the code successfully
+# with python2.
 import a1
+import Tkinter
 import time
 import math
 
@@ -42,10 +49,10 @@ class Clock(object):
 
         self.width = 200
         self.height = 200
-        self.internal_frame = tkinter.Frame(
-            tk, borderwidth=3, relief=tkinter.GROOVE)
+        self.internal_frame = Tkinter.Frame(
+            tk, borderwidth=3, relief=Tkinter.GROOVE)
 
-        self.canvas = tkinter.Canvas(
+        self.canvas = Tkinter.Canvas(
             self.internal_frame, width=self.width, height=self.height)
         self.canvas.grid()
 
@@ -62,9 +69,9 @@ class Clock(object):
         self.now = time.time()          # Allow fast-forwarding
         self.interval = 500
 
-        self.var = tkinter.StringVar(self.internal_frame)
+        self.var = Tkinter.StringVar(self.internal_frame)
         self.var.set('local')
-        option = tkinter.OptionMenu(self.internal_frame, self.var, *REAL_ZONES)
+        option = Tkinter.OptionMenu(self.internal_frame, self.var, *REAL_ZONES)
         option.grid(sticky='ew')
         self.internal_frame.grid(**kargs)
         self.time_scale = 1
@@ -97,7 +104,7 @@ class Clock(object):
         False, register a redraw for later.'''
 
         self.now = self.now + self.interval / 1000 * self.time_scale
-        self.canvas.delete(tkinter.ALL)
+        self.canvas.delete(Tkinter.ALL)
 
         # Draw the clock rim.
         self.canvas.create_oval(10, 10, self.width - 10,
@@ -127,7 +134,7 @@ class Clock(object):
 
         # Draw the hour hand.
         hours_angle = (hour % 12) / 12 * 360
-        self._draw_hand(hours_angle, 30, arrow=tkinter.FIRST,
+        self._draw_hand(hours_angle, 30, arrow=Tkinter.FIRST,
                         arrowshape=(50, 2, 2), fill=hands_colour)
         self._draw_hand(hours_angle + 180, 5, fill=hands_colour)
 
@@ -137,16 +144,16 @@ class Clock(object):
             minutes_angle += 180
         elif a1.time_from_utc(0, self.diff) % 1 == 0.75:
             minutes_angle += 270
-        self._draw_hand(minutes_angle, 30, arrow=tkinter.FIRST,
+        self._draw_hand(minutes_angle, 30, arrow=Tkinter.FIRST,
                         arrowshape=(80, 2, 2), fill=hands_colour)
         self._draw_hand(minutes_angle + 180, 5, fill=hands_colour)
 
         # Draw the second hand.
         seconds_angle = int(a1.get_seconds(int(self.now))) / 60 * 360
         self._draw_hand(seconds_angle, 70, fill='red',
-                        width=2, arrow=tkinter.FIRST, arrowshape=(70, 9, 2))
+                        width=2, arrow=Tkinter.FIRST, arrowshape=(70, 9, 2))
         self._draw_hand(seconds_angle + 180, 18, fill='red',
-                        arrow=tkinter.LAST, arrowshape=(8, 5, 5), width=2)
+                        arrow=Tkinter.LAST, arrowshape=(8, 5, 5), width=2)
         self._draw_hand(seconds_angle + 180, 20, fill='red')
 
         # Draw the four larger tick marks at noon, 3, 6, and 9.
@@ -167,10 +174,10 @@ class Clock(object):
 
 
 if __name__ == '__main__':
-    tk = tkinter.Tk()
+    tk = Tkinter.Tk()
 
     # The main window.
-    frame = tkinter.Frame(tk)
+    frame = Tkinter.Frame(tk)
 
     # Make a list of 4 clocks and add them to the main window.
     canvases = []
@@ -186,7 +193,7 @@ if __name__ == '__main__':
 
     # Add the Slow motion button to the window and register the slow function as the
     # one to be called when the button is clicked.
-    tkinter.Button(frame, text='Slow motion',
+    Tkinter.Button(frame, text='Slow motion',
                    command=slow).grid(row=3, column=0)
 
     def normal_speed():
@@ -197,7 +204,7 @@ if __name__ == '__main__':
 
     # Add the Normal speed button to the window and register the normal_speed
     # function as the one to be called when the button is clicked.
-    tkinter.Button(frame, text='Normal speed',
+    Tkinter.Button(frame, text='Normal speed',
                    command=normal_speed).grid(row=3, column=1)
 
     def speed():
@@ -208,7 +215,7 @@ if __name__ == '__main__':
 
     # Add the Fast forward button to the window and register the speed
     # function as the one to be called when the button is clicked.
-    tkinter.Button(frame, text='Fast forward',
+    Tkinter.Button(frame, text='Fast forward',
                    command=speed).grid(row=3, column=2)
 
     frame.pack()

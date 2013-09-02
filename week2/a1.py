@@ -1,3 +1,5 @@
+#!/usr/bin/python3.2
+
 def seconds_difference(time_1, time_2):
     """ (number, number) -> number
 
@@ -80,40 +82,41 @@ def to_24_hour_clock(hours):
 
 ### Write your get_hours function definition here:
 def get_hours(time):
-	""" (number) -> number
+    """ (number) -> number
 
-	Return the number of hours that have elapsed 
-	since midnight, as seen on a 24-hour clock. 
-	>>> get_hours(3800)
+    Return the number of hours that have elapsed 
+    since midnight, as seen on a 24-hour clock. 
+    >>> get_hours(3800)
     1
     """
 
-	return time // 3600
+    return time // 3600
 
 
 
 ### Write your get_minutes function definition here:
 def get_minutes(time):
-	"""(number) -> number
+    """(number) -> number
 
-	Return the number of minutes that have elapsed
-	since midnight as seen on a clock.
-	>>> get_minutes(3800)
+    Return the number of minutes that have elapsed
+    since midnight as seen on a clock.
+    >>> get_minutes(3800)
     3
     """
 
-	min_left = time % 3600
-	return min_left // 60
+    min_left = time % 3600
+    return min_left // 60
 ### Write your get_seconds function definition here:
-def get_seconds(time):
-	"""(number) -> number
 
-	Return the number of seconds that have elapsed
-	since midnight as seen on a clock.
-	>>> get_seconds(3800)
+def get_seconds(time):
+    """(number) -> number    
+
+    Return the number of seconds that have elapsed
+    since midnight as seen on a clock.
+    >>> get_seconds(3800)
     20
     """
-	return (time % 3600) % 60
+    return (time % 3600) % 60
 
 
 
@@ -165,5 +168,6 @@ def time_from_utc(utc_offset, time):
     """
     delta = time + utc_offset
     return delta % 24
+
 
 
